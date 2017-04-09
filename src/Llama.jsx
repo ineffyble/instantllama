@@ -8,6 +8,12 @@ class Llama extends Component {
       currentLlama: false
     };
   }
+  preloadLlamas() {
+    Llamas['children'].forEach(function(llama) {
+      var llamaImg = new Image();
+      llamaImg.src = "/static/llamas/" + llama.name;
+    });
+  }
   getLlama() {
     var randomLlama = Llamas['children'][Math.floor(Math.random()*Llamas['children'].length)];
     return randomLlama.name;
@@ -18,6 +24,7 @@ class Llama extends Component {
       });
   }
   componentWillMount() {
+     this.preloadLlamas();
      this.changeLlama();
   }
   render() {
