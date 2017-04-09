@@ -8,6 +8,8 @@ var WebpackShellPlugin = require('webpack-shell-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var ManifestPlugin = require('webpack-manifest-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
+var ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
+var ImageminMozjpeg = require('imagemin-mozjpeg')
 var paths = require('./paths');
 var getClientEnvironment = require('./env');
 
@@ -216,6 +218,34 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'src/llamas/', to: 'static/llamas/' }
     ]),
+    new ImageminWebpackPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      optipng: {
+        optimizationLevel: 7,
+      },
+      pngquant: {
+        quality: '65-90',
+        speed: 4,
+      },
+      gifsicle: {
+        optimizationLevel: 3,
+      },
+      svgo: {
+        plugins: [{
+          removeViewBox: false,
+          removeEmptyAttrs: true,
+        }],
+      },
+      jpegtran: {
+        progressive: true,
+      },
+      plugins: [
+        ImageminMozjpeg({
+          quality: 65,
+          progressive: true,
+        }),
+      ],
+    }),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'production') { ... }. See `./env.js`.
     // It is absolutely essential that NODE_ENV was set to production here.

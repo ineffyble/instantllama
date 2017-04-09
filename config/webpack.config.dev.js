@@ -5,6 +5,8 @@ var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CopyWebpackPlugin  = require('copy-webpack-plugin');
 var WebpackShellPlugin = require('webpack-shell-plugin');
+var ImageminWebpackPlugin = require('imagemin-webpack-plugin').default;
+var ImageminMozjpeg = require('imagemin-mozjpeg');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 var InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin');
 var WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin');
@@ -199,6 +201,34 @@ module.exports = {
     new CopyWebpackPlugin([
       { from: 'src/llamas/', to: 'static/llamas/' }
     ]),
+    new ImageminWebpackPlugin({
+      test: /\.(jpe?g|png|gif|svg)$/i,
+      optipng: {
+        optimizationLevel: 7,
+      },
+      pngquant: {
+        quality: '65-90',
+        speed: 4,
+      },
+      gifsicle: {
+        optimizationLevel: 3,
+      },
+      svgo: {
+        plugins: [{
+          removeViewBox: false,
+          removeEmptyAttrs: true,
+        }],
+      },
+      jpegtran: {
+        progressive: true,
+      },
+      plugins: [
+        ImageminMozjpeg({
+          quality: 65,
+          progressive: true,
+        }),
+      ],
+    }),
     // Makes some environment variables available to the JS code, for example:
     // if (process.env.NODE_ENV === 'development') { ... }. See `./env.js`.
     new webpack.DefinePlugin(env.stringified),
