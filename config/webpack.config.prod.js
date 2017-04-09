@@ -213,7 +213,7 @@ module.exports = {
       }
     }),
     new WebpackShellPlugin({
-      onBuildStart:['json-dir-listing src/llamas']
+      onBuildStart:['json-dir-listing src/llamas --output ../llamas.json']
     }),
     new CopyWebpackPlugin([
       { from: 'src/llamas/', to: 'static/llamas/' }
