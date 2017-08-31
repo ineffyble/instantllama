@@ -37,7 +37,7 @@
     "file-loader": "0.10.0",
     "fs-extra": "0.30.0",
     "html-webpack-plugin": "2.24.0",
-    "http-proxy-middleware": "0.17.3",
+    "http-proxy-middleware": "0.17.4",
     "image-webpack-loader": "^3.3.0",
     "imagemin-mozjpeg": "^6.0.0",
     "imagemin-webpack-plugin": "^1.4.4",
