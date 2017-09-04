@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.16.1",
-    "eslint": "^3.19.0",
+    "eslint": "^4.6.1",
     "imagemin-jpegtran": "^5.0.2",
     "json-dir-listing": "^0.2.1",
     "react": "^15.5.3",
