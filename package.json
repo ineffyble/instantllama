@@ -40,7 +40,7 @@
     "http-proxy-middleware": "0.17.3",
     "image-webpack-loader": "^3.3.0",
     "imagemin-mozjpeg": "^6.0.0",
-    "imagemin-webpack-plugin": "^1.4.4",
+    "imagemin-webpack-plugin": "^1.5.2",
     "jest": "18.1.0",
     "json-loader": "0.5.4",
     "object-assign": "4.1.1",
